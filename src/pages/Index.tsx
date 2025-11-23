@@ -1,14 +1,39 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import InstallScreen from '@/components/InstallScreen';
+import BootScreen from '@/components/BootScreen';
+import Desktop from '@/components/Desktop';
+
+type Stage = 'install' | 'reboot' | 'boot' | 'desktop';
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
+  const [stage, setStage] = useState<Stage>('install');
+
+  const handleInstallComplete = () => {
+    setStage('reboot');
+    setTimeout(() => setStage('boot'), 2000);
+  };
+
+  const handleBootComplete = () => {
+    setStage('desktop');
+  };
+
+  if (stage === 'install') {
+    return <InstallScreen onComplete={handleInstallComplete} />;
+  }
+
+  if (stage === 'reboot') {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white text-xl">Перезагрузка...</div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (stage === 'boot') {
+    return <BootScreen onComplete={handleBootComplete} />;
+  }
+
+  return <Desktop />;
 };
 
 export default Index;

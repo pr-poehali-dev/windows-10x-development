@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
 import StartMenu from '@/components/StartMenu';
 import FileExplorer from '@/components/FileExplorer';

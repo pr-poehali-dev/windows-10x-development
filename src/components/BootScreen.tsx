@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-const BootScreen = () => {
+interface BootScreenProps {
+  onComplete: () => void;
+}
+
+const BootScreen = ({ onComplete }: BootScreenProps) => {
   const [dots, setDots] = useState(0);
 
   useEffect(() => {
@@ -8,8 +12,15 @@ const BootScreen = () => {
       setDots((prev) => (prev + 1) % 4);
     }, 300);
 
-    return () => clearInterval(interval);
-  }, []);
+    const timer = setTimeout(() => {
+      onComplete();
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+    };
+  }, [onComplete]);
 
   return (
     <div className="w-full h-full bg-[#1E1E1E] flex flex-col items-center justify-center">
