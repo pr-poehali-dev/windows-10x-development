@@ -10,10 +10,10 @@ const Desktop = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [time, setTime] = useState(new Date());
 
-  useState(() => {
+  useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
-  });
+  }, []);
 
   const desktopIcons = [
     { name: 'Этот компьютер', icon: 'Monitor', action: () => setExplorerOpen(true) },
