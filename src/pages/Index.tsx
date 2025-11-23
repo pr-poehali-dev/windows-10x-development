@@ -17,23 +17,18 @@ const Index = () => {
     setStage('desktop');
   };
 
-  if (stage === 'install') {
-    return <InstallScreen onComplete={handleInstallComplete} />;
-  }
-
-  if (stage === 'reboot') {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white text-xl">Перезагрузка...</div>
-      </div>
-    );
-  }
-
-  if (stage === 'boot') {
-    return <BootScreen onComplete={handleBootComplete} />;
-  }
-
-  return <Desktop />;
+  return (
+    <div className="min-h-screen w-full">
+      {stage === 'install' && <InstallScreen onComplete={handleInstallComplete} />}
+      {stage === 'reboot' && (
+        <div className="min-h-screen w-full bg-black flex items-center justify-center">
+          <div className="text-white text-xl">Перезагрузка...</div>
+        </div>
+      )}
+      {stage === 'boot' && <BootScreen onComplete={handleBootComplete} />}
+      {stage === 'desktop' && <Desktop />}
+    </div>
+  );
 };
 
 export default Index;

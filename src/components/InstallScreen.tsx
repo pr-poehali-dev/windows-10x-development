@@ -37,25 +37,24 @@ const InstallScreen = ({ onComplete }: InstallScreenProps) => {
   }, [onComplete]);
 
   return (
-    <div className="w-full h-full bg-[#0078D4] flex flex-col items-center justify-center text-white">
-      <div className="w-full max-w-md px-8">
+    <div className="min-h-screen w-full bg-[#0078D4] flex flex-col items-center justify-center text-white">
+      <div className="w-full max-w-2xl px-8">
         <div className="mb-12 text-center">
-          <div className="inline-flex gap-1 mb-8">
-            <div className="w-24 h-24 bg-[#00A4EF]" />
-            <div className="w-24 h-24 bg-[#7FBA00]" />
-            <div className="w-24 h-24 bg-[#FFB900]" />
-            <div className="w-24 h-24 bg-[#F25022]" />
-          </div>
-          <h1 className="text-4xl font-light mb-2">Установка Windows 10x</h1>
+          <img 
+            src="https://cdn.poehali.dev/files/b6160107-ef9d-4f99-ac7f-b5d81ef63266.jpg" 
+            alt="Windows Logo" 
+            className="w-40 h-40 mx-auto mb-8"
+          />
+          <h1 className="text-5xl font-light mb-2">Установка Windows 10x</h1>
         </div>
 
-        <div className="space-y-4">
-          <Progress value={progress} className="h-2 bg-white/20" />
-          <p className="text-center text-lg font-light">{status}</p>
-          <p className="text-center text-sm text-white/70">{progress}%</p>
+        <div className="space-y-6">
+          <Progress value={progress} className="h-3 bg-white/20" />
+          <p className="text-center text-xl font-light">{status}</p>
+          <p className="text-center text-base text-white/70">{progress}%</p>
         </div>
 
-        <div className="mt-12 text-center text-sm text-white/60">
+        <div className="mt-16 text-center text-base text-white/60">
           <p>Не выключайте компьютер</p>
         </div>
       </div>

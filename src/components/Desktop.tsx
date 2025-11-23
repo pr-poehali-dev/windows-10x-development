@@ -22,7 +22,7 @@ const Desktop = () => {
 
   return (
     <div 
-      className="w-full h-full relative bg-gradient-to-br from-[#0078D4] to-[#00A4EF] overflow-hidden"
+      className="min-h-screen w-full relative bg-gradient-to-br from-[#0078D4] to-[#00A4EF] overflow-hidden"
       onClick={() => setStartMenuOpen(false)}
     >
       <div className="p-6 space-y-4">
