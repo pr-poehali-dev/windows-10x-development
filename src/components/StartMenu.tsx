@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 
 interface StartMenuProps {
   onClose: () => void;
+  onRestart: () => void;
+  onShutdown: () => void;
 }
 
-const StartMenu = ({ onClose }: StartMenuProps) => {
+const StartMenu = ({ onClose, onRestart, onShutdown }: StartMenuProps) => {
+  const [powerMenuOpen, setPowerMenuOpen] = useState(false);
   const apps = [
     { name: 'Настройки', icon: 'Settings', color: 'bg-[#0078D4]' },
     { name: 'Проводник', icon: 'Folder', color: 'bg-[#FFB900]' },
@@ -68,9 +72,32 @@ const StartMenu = ({ onClose }: StartMenuProps) => {
             <Icon name="User" size={20} />
             <span className="text-sm">Пользователь</span>
           </button>
-          <button className="p-2 rounded hover:bg-white/5 transition-colors text-white">
-            <Icon name="Power" size={20} />
-          </button>
+          <div className="relative">
+            <button 
+              onClick={() => setPowerMenuOpen(!powerMenuOpen)}
+              className="p-2 rounded hover:bg-white/5 transition-colors text-white"
+            >
+              <Icon name="Power" size={20} />
+            </button>
+            {powerMenuOpen && (
+              <div className="absolute bottom-full right-0 mb-2 bg-[#2D2D2D] rounded shadow-xl overflow-hidden">
+                <button
+                  onClick={onRestart}
+                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/10 transition-colors text-white text-sm"
+                >
+                  <Icon name="RotateCw" size={16} />
+                  <span>Перезагрузка</span>
+                </button>
+                <button
+                  onClick={onShutdown}
+                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/10 transition-colors text-white text-sm"
+                >
+                  <Icon name="Power" size={16} />
+                  <span>Завершение работы</span>
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

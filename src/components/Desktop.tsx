@@ -4,7 +4,12 @@ import StartMenu from '@/components/StartMenu';
 import FileExplorer from '@/components/FileExplorer';
 import Settings from '@/components/Settings';
 
-const Desktop = () => {
+interface DesktopProps {
+  onRestart: () => void;
+  onShutdown: () => void;
+}
+
+const Desktop = ({ onRestart, onShutdown }: DesktopProps) => {
   const [startMenuOpen, setStartMenuOpen] = useState(false);
   const [explorerOpen, setExplorerOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -82,7 +87,7 @@ const Desktop = () => {
         </div>
       </div>
 
-      {startMenuOpen && <StartMenu onClose={() => setStartMenuOpen(false)} />}
+      {startMenuOpen && <StartMenu onClose={() => setStartMenuOpen(false)} onRestart={onRestart} onShutdown={onShutdown} />}
       {explorerOpen && <FileExplorer onClose={() => setExplorerOpen(false)} />}
       {settingsOpen && <Settings onClose={() => setSettingsOpen(false)} />}
     </div>
